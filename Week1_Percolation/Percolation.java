@@ -37,7 +37,7 @@ public class Percolation {
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
         int n = grid[0].length;
-        if (row < 0 || col < 0 || row > n - 2 || col > n - 2)
+        if (row < 0 || col < 0)
             throw new IllegalArgumentException();
         else {
             if (!this.isOpen(row, col)) {
@@ -61,8 +61,7 @@ public class Percolation {
 
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
-        int n = grid[0].length;
-        if (row < 0 || col < 0 || row > n - 2 || col > n - 2)
+        if (row < 0 || col < 0)
             throw new IllegalArgumentException();
         else
             return this.grid[row][col];
@@ -72,7 +71,7 @@ public class Percolation {
     // full means an open site that can be connected to the top row
     public boolean isFull(int row, int col) {
         int n = grid[0].length;
-        if (row < 0 || col < 0 || row > n - 2 || col > n - 2)
+        if (row < 0 || col < 0)
             throw new IllegalArgumentException();
         else {
             if (quf.find(n * row + col) == quf.find(n * n) && this.isOpen(row, col))
