@@ -63,6 +63,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         int ridx = StdRandom.uniform(N);
         if (rq[ridx] == null)
             throw new NoSuchElementException();
+        if (idx <= rq.length / 4)
+            resize(rq.length / 2);
         N--;
         Item temp = rq[ridx];
         // replace the vacancy
@@ -107,6 +109,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
 
         public Item next() {
+            if(N <= 0 || pidx >= N)
+                throw new NoSuchElementException();
             return rq[walklist[pidx++]];
         }
     }
@@ -120,49 +124,19 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         StdOut.println("The randomizedqueue is empty? " + r.isEmpty());
         StdOut.println("The size of randomizedqueue is: " + r.size());
 
-        while (StdIn.hasNextLine()) {
-            StdOut.println("Enqueue: ");
-            r.enqueue(StdIn.readInt());
-            StdOut.println("The randomizedqueue is empty? " + r.isEmpty());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-            StdOut.println("Enqueue: ");
-            r.enqueue(StdIn.readInt());
-            StdOut.println("The randomizedqueue is empty? " + r.isEmpty());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-            StdOut.println("Enqueue: ");
-            r.enqueue(StdIn.readInt());
-            StdOut.println("The randomizedqueue is empty? " + r.isEmpty());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-            StdOut.println("Enqueue: ");
-            r.enqueue(StdIn.readInt());
-            StdOut.println("The randomizedqueue is empty? " + r.isEmpty());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-            StdOut.println("Enqueue: ");
-            r.enqueue(StdIn.readInt());
-            StdOut.println("The randomizedqueue is empty? " + r.isEmpty());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-            StdOut.println("Enqueue: ");
-            r.enqueue(StdIn.readInt());
-            StdOut.println("The randomizedqueue is empty? " + r.isEmpty());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
 
-            StdOut.println("Iterate through elements randomly:");
-            Iterator<Integer> i = r.iterator();
-            while (i.hasNext()) {
-                StdOut.println(i.next());
-            }
 
-            StdOut.println("Dequeue: " + r.dequeue());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-            StdOut.println("sample= " + r.sample());
-            StdOut.println("Dequeue: " + r.dequeue());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-            StdOut.println("sample= " + r.sample());
-
-            StdOut.println("sample= " + r.sample());
-            StdOut.println("The size of randomizedqueue is: " + r.size());
-
+        StdOut.println("Iterate through elements randomly:");
+        Iterator<Integer> i = r.iterator();
+        while (i.hasNext()) {
+            StdOut.println(i.next());
         }
+        StdOut.println("sample= " + r.sample());
+        StdOut.println("Dequeue: " + r.dequeue());
+        StdOut.println("The size of randomizedqueue is: " + r.size());
+
+
+
     }
 
 }

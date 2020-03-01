@@ -40,7 +40,7 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null)
             throw new IllegalArgumentException();
         if (head <= 1)
-            resizel(deq.length * 2);
+            expand(deq.length * 2);
 
         if (deq[head] == null)
             deq[head] = item;
@@ -58,7 +58,7 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null)
             throw new IllegalArgumentException();
         if (tail >= deq.length - 1)
-            resizel(deq.length * 2);
+            expand(deq.length * 2);
 
         if (deq[tail] != null) {
             tail++;
@@ -69,8 +69,26 @@ public class Deque<Item> implements Iterable<Item> {
         N++;
     }
 
-    //resize the array
-    private void resizel(int cap) {
+    //expand the array
+    private void expand(int cap) {
+        if (cap <= 0)
+            throw new IllegalArgumentException();
+        Item[] copy = (Item[]) new Object[cap];
+        for (int i = 0; i < N; i++) {
+            copy[cap / 4 + i] = deq[head + i];
+        }
+        head = cap / 4;
+
+        if (N >= 1)
+            tail = cap / 4 + N - 1;
+        else
+            tail = head;
+        deq = copy;
+
+    }
+
+    // shrink the array
+    private void shrink(int cap) {
         if (cap <= 0)
             throw new IllegalArgumentException();
         Item[] copy = (Item[]) new Object[cap];
@@ -93,6 +111,9 @@ public class Deque<Item> implements Iterable<Item> {
         //corner case
         if (deq[head] == null)
             throw new NoSuchElementException();
+
+        if ((deq.length >= 8) && (N <= deq.length / 4))
+            shrink(deq.length / 2);
         N--;
         Item temp = deq[head];
         if (head == deq.length - 1) {
@@ -119,6 +140,8 @@ public class Deque<Item> implements Iterable<Item> {
         //corner case
         if (deq[tail] == null)
             throw new NoSuchElementException();
+        if ((deq.length >= 8) && (N <= deq.length / 4))
+            shrink(deq.length / 2);
         N--;
         Item temp = deq[tail];
         if (tail == 0) {
@@ -162,10 +185,7 @@ public class Deque<Item> implements Iterable<Item> {
         public Item next() {
             if (deq[start] == null)
                 throw new NoSuchElementException();
-            if (start < deq.length - 1)
-                return deq[start++];
-            else
-                return deq[start];
+            return deq[start++];
         }
 
 
@@ -178,33 +198,33 @@ public class Deque<Item> implements Iterable<Item> {
         d.addFirst(StdIn.readInt());
         StdOut.println("Removing the last element: " + d.removeLast());
 
-        while (StdIn.hasNextLine()) {
 
 
-            StdOut.println("The size of deque is: " + d.size());
-            StdOut.println("The deque is empty? " + d.isEmpty());
-            StdOut.println("AddFirst: ");
-            d.addFirst(StdIn.readInt());
-            StdOut.println("The size of deque is: " + d.size());
-            StdOut.println("The deque is empty? " + d.isEmpty());
-            StdOut.println("Removing the last element: " + d.removeLast());
-            StdOut.println("AddFirst: ");
+        StdOut.println("The size of deque is: " + d.size());
+        StdOut.println("The deque is empty? " + d.isEmpty());
+        StdOut.println("AddFirst: ");
+        d.addFirst(StdIn.readInt());
+        StdOut.println("The size of deque is: " + d.size());
+        StdOut.println("The deque is empty? " + d.isEmpty());
+        StdOut.println("Removing the last element: " + d.removeLast());
+        StdOut.println("AddFirst: ");
 
-            StdOut.println("AddLast: ");
-            d.addLast(StdIn.readInt());
-            StdOut.println("The size of deque is: " + d.size());
-            StdOut.println("The deque is empty? " + d.isEmpty());
+        StdOut.println("AddLast: ");
+        d.addLast(StdIn.readInt());
+        StdOut.println("The size of deque is: " + d.size());
+        StdOut.println("The deque is empty? " + d.isEmpty());
 
 
-            StdOut.println("Removing the first element: " + d.removeFirst());
+        StdOut.println("Removing the first element: " + d.removeFirst());
 
-            StdOut.println("Iterate through elements from head to tail:");
-            Iterator<Integer> i = d.iterator();
-            while (i.hasNext()) {
-                StdOut.println(i.next());
-            }
+        StdOut.println("Iterate through elements from head to tail:");
 
+        Iterator<Integer> i = d.iterator();
+        while (i.hasNext()) {
+            StdOut.println(i.next());
         }
+
+
 
 
     }
