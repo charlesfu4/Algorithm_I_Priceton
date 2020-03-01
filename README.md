@@ -10,4 +10,7 @@
 ## Week2 Reflection: Queue(95/100)
 * Memory issue: Still need to implement array shifting in Deque: I applied array expansion by detecting index of head and tail. Therefore, the space will be waster if either side is not full.
 * Visualize array operation and write customized tester is the best way to debug.
-
+* RandomizedQueue: Be aware of iteration part. Item array is called by reference, therefore, do not implement operation on private instance which refenerence the origin item array. Create permutation walklist to avoid this problem. 
+```java
+private int[] walklist = StdRandom.permutation(N);
+```
