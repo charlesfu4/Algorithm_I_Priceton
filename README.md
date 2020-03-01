@@ -7,6 +7,7 @@
 * Be aware of invalid arguments in constructor and method and remember to throw exception the requirement asked.
 * The grid I design is basically (n+2) times (n+2)(in order to programming it easier) so the default throwing IllegalArgumentExcpetion is not compatiable here. The tester on coursera will go wrong.
 
-## Week2 Reflection: Queue(90/100)
-* Still need to implement array shrinking
+## Week2 Reflection: Queue(95/100)
+* Memory issue: Still need to implement array shifting in Deque: I applied array expansion by detecting index of head and tail. Therefore, the space will be waster if either side is not full.
+* Visualize array operation and write customized tester is the best way to debug.
 
