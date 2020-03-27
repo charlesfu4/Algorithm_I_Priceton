@@ -21,3 +21,11 @@ private int[] walklist = StdRandom.permutation(N);
   - Drawback: need to creat extra array for sorting points in segment for comparison, unnecessary computation if I can know if the origin point(p) is not the smallest in the beginning.
 * Version 2: One for loop. Sort the points array first by natural order outside the for loop, save it and then sort it according to slope p to q in the for loop.(Notice the stability of natural order only hold for next sort of slope, saving it outside the for loop save 50% O(NlgN) in sorting).In the for loop, we have two indexes head and tail. Hold head until tail find the end of points with same slope and or the end of points array to walk through. If the p is smaller the first elements in q's, we then form the segment. This implementation do not need any extra array for storing parallel points on one line, especially efficient.
 * Pitfall: I did not realize the resizing array for storing segment occurs everytime I find a segment. Remember the lesson from last chapter. Resizing the array in double capacity can reduce the overhead of resizing them tightly everytime when adding new elements from O(N^2) to O(NlnN).
+
+## Week4 Reflection: 8Puzzle(100/100)
+
+* Immutability of reference vars could be realized by putting final. For array type, defensive copying is still a better way to keep it immutable.
+* The memory trick: 1d-array board cannot be realized directly by revising the constructor because of the grading system will detect it. Instead, by making use of overloading we can relize 1d array constructor for my implementation.
+* Tricky part of moves: Understanding the algorithm in the game tree will actually fall backward, so adding move + 1 in each loop will cause problematic counts in the end. Caching moves as a instance variable of Node is the way to keep track of the number correctly.
+* Basic linked list structure applied on node is the valid way to track back the solution board steps.
+* Save more memory space by implementing in only one PriorityQueue. I did not do the optimization but still passed the grader.
