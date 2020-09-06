@@ -29,3 +29,13 @@ private int[] walklist = StdRandom.permutation(N);
 * Tricky part of moves: Understanding the algorithm in the game tree will actually fall backward, so adding move + 1 in each loop will cause problematic counts in the end. Caching moves as a instance variable of Node is the way to keep track of the number correctly.
 * Basic linked list structure applied on node is the valid way to track back the solution board steps.
 * Save more memory space by implementing in only one PriorityQueue. I did not do the optimization but still passed the grader.
+    
+## Week5 Reflection: KdTree(100/100)
+* The number of instance variable can be reduced. However with my setting it is still scalable. 
+* Contain() of KdTree: As long as the point is found, return.
+* Range() of KdTree: Does not implement the suggestion improvement with line intersection. With correct implementation of rectangular interesaction, it is still possible to pass the grading system.
+* Nearest() of KdTree: The one took me longest to implement. Be cautious to the caveat contain() in RectHV. Using x-axis and y-axis to decide the location of the query point(rt or lb) will be easier and faster.
+* Plot of range search and nearest neighbor KdTree
+<p align="middle">
+  <img src="github.com/charlesfu4/Algorithm_I_Priceton/blob/master/Week5_Kdtree/KdTree_plot.png">
+</p>
