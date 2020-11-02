@@ -37,5 +37,5 @@ private int[] walklist = StdRandom.permutation(N);
 * Nearest() of KdTree: The one took me longest to implement. Be cautious to the caveat contain() in RectHV. Using x-axis and y-axis to decide the location of the query point(rt or lb) will be easier and faster.
 * Plot of range search and nearest neighbor KdTree
 <p align="middle">
-  <img src="github.com/charlesfu4/Algorithm_I_Priceton/blob/master/Week5_Kdtree/KdTree_plot.png">
+  <img src="github.com/charlesfu4/Algorithm_I_Priceton/blob/master/Week5_Kdtree/KdTree_plot.png", height = 300px>
 </p>
